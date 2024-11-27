@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int alpha,q,xa,xb,ya,yb,k1,k2;
+	printf("Input alpha,q,xa,xb");
+	scanf("%d%d%d%d",&alpha,&q,&xa,&xb);
+	ya=(int)pow(alpha,xa)%q;
+	yb=(int)pow(alpha,xb)%q;
+	k1=(int)pow(yb,xa)%q;
+	k2=(int)pow(ya,xb)%q;
+	if(k1==k2)
+	{
+		printf("Key exchange possible");
+	}
+	else
+	{
+		printf("ket exchange not possible");
+	}
+	return 0;
+}
