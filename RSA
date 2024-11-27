@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	int p,q,n,z,e=7,d;
+	printf("ENetr p: ");
+	scanf("%d", &p);
+	printf("ENetr q: ");
+	scanf("%d", &q);
+	n=p*q;
+	z=(p-1)*(q-1);
+	for(e=2;e=z;e++)
+	{
+		if((e*d)%z==1)
+		{
+			printf("e=",e);
+			break;
+		}
+	}
+	printf("public key(e,n)(%d,%d)",e,n);
+	printf("private key(d,n)(%d,%d)",d,n);
+	return 0;
+}
