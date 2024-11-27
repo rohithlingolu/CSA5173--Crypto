@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    int key[2][2];
+    char plaintext[100];
+    char ciphertext[100];
+    int i, p1, p2;
+
+    printf("Enter 2x2 key matrix (4 integers):\n");
+    scanf("%d %d %d %d", &key[0][0], &key[0][1], &key[1][0], &key[1][1]);
+
+    printf("Enter plaintext (lowercase only): ");
+    scanf("%s", plaintext);
+
+    int length = strlen(plaintext);
+    if (length % 2 != 0) {
+        plaintext[length] = 'x';
+        plaintext[length + 1] = '\0';
+        length++;
+    }
+
+    for (i = 0; i < length; i += 2) {
+        p1 = plaintext[i] - 'a';
+        p2 = plaintext[i + 1] - 'a';
+
+        ciphertext[i] = ((key[0][0] * p1 + key[0][1] * p2) % 26) + 'a';
+        ciphertext[i + 1] = ((key[1][0] * p1 + key[1][1] * p2) % 26) + 'a';
+    }
+    ciphertext[length] = '\0';
+
+    printf("Encrypted text: %s\n", ciphertext);
+
+    return 0;
+}
