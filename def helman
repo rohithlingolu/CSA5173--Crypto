@@ -1,0 +1,53 @@
+#include <stdio.h>
+
+int main() {
+    int alpha, q, xa, xb, ya = 1, yb = 1, k1 = 1, k2 = 1;
+    int temp_base, temp_exp;
+    printf("Input alpha, q, xa, xb: ");
+    scanf("%d%d%d%d", &alpha, &q, &xa, &xb);
+
+    temp_base = alpha % q;
+    temp_exp = xa;
+    while (temp_exp > 0) {
+        if (temp_exp % 2 == 1) {
+            ya = (ya * temp_base) % q;
+        }
+        temp_exp = temp_exp >> 1;
+        temp_base = (temp_base * temp_base) % q;
+    }
+    temp_base = alpha % q;
+    temp_exp = xb;
+    while (temp_exp > 0) {
+        if (temp_exp % 2 == 1) {
+            yb = (yb * temp_base) % q;
+        }
+        temp_exp = temp_exp >> 1;
+        temp_base = (temp_base * temp_base) % q;
+    }
+    temp_base = yb % q;
+    temp_exp = xa;
+    while (temp_exp > 0) {
+        if (temp_exp % 2 == 1) {
+            k1 = (k1 * temp_base) % q;
+        }
+        temp_exp = temp_exp >> 1;
+        temp_base = (temp_base * temp_base) % q;
+    }
+    temp_base = ya % q;
+    temp_exp = xb;
+    while (temp_exp > 0) {
+        if (temp_exp % 2 == 1) {
+            k2 = (k2 * temp_base) % q;
+        }
+        temp_exp = temp_exp >> 1;
+        temp_base = (temp_base * temp_base) % q;
+    }
+    if (k1 == k2) {
+        printf("Key exchange possible. Shared key: %d\n", k1);
+    } else {
+        printf("Key exchange not possible\n");
+    }
+
+    return 0;
+}
+
