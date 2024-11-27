@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main() {
+    unsigned long ciphertext, key;
+    unsigned long left, right, temp, plaintext;
+    int i;
+
+    printf("Enter ciphertext (64-bit in hexadecimal): ");
+    scanf("%lx", &ciphertext);
+    printf("Enter key (64-bit in hexadecimal): ");
+    scanf("%lx", &key);
+
+    left = (ciphertext >> 32) & 0xFFFFFFFF;
+    right = ciphertext & 0xFFFFFFFF;
+
+    for (i = 0; i < 16; i++) {
+        temp = left ^ key;
+        left = right ^ temp;
+        right = temp;
+    }
+
+    plaintext = (left << 32) | right;
+
+    printf("Decrypted plaintext: %016lx\n", plaintext);
+
+    return 0;
+}
