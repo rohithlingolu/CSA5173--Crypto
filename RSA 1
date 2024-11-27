@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+int main() {
+    int p, q, n, z, e, d, gcd, temp_a, temp_b;
+
+    printf("Enter p: ");
+    scanf("%d", &p);
+    printf("Enter q: ");
+    scanf("%d", &q);
+
+    n = p * q;
+    z = (p - 1) * (q - 1);
+
+    for (e = 2; e < z; e++) {
+        temp_a = e;
+        temp_b = z;
+        while (temp_b != 0) {
+            int temp = temp_b;
+            temp_b = temp_a % temp_b;
+            temp_a = temp;
+        }
+        gcd = temp_a;
+        if (gcd == 1) {
+            break;
+        }
+    }
+
+    for (d = 1; d < z; d++) {
+        if ((e * d) % z == 1) {
+            break;
+        }
+    }
+
+    printf("Public key (e, n): (%d, %d)\n", e, n);
+    printf("Private key (d, n): (%d, %d)\n", d, n);
+
+    return 0;
+}
